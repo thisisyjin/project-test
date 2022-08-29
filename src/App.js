@@ -1,9 +1,11 @@
+import ImageUpload from './components/ImageUpload';
+import Responsive from './components/common/Responsive';
+
 function App() {
   return (
-    <div className="App">
-      <h1>Test Page</h1>
-      <input type="file" accept="image/*" />
-    </div>
+    <Responsive>
+      <ImageUpload />
+    </Responsive>
   );
 }
 
