@@ -3,7 +3,6 @@ import styled from 'styled-components';
 
 const InputTextBlock = styled.div`
   width: 100%;
-  height: 100vh;
   padding: 0 10px;
 `;
 
@@ -11,7 +10,7 @@ const StyledInput = styled.input`
   margin-top: 20px;
   width: 80%;
   border: none;
-  padding: 12px 20px;
+  padding: 12px 24px;
   &:focus {
     outline: none;
     background-color: #eeeccc;
@@ -51,7 +50,12 @@ const InputText = () => {
   return (
     <InputTextBlock>
       <form className="input-form">
-        <StyledInput type="text" value={value} onChange={onChangeInput} />
+        <StyledInput
+          type="text"
+          value={value}
+          onChange={onChangeInput}
+          placeholder="이름"
+        />
         <StyledButton type="submit">Search</StyledButton>
       </form>
       <PositionFixed>카톡 문의하기</PositionFixed>
