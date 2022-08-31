@@ -1,13 +1,13 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './routes/Home';
+import NewHome from './routes/NewHome';
 import Progress from './routes/Progress';
 
 function App() {
   return (
     <BrowserRouter basename="/project-test/">
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/progress/:step" element={<Progress />} />
+        <Route path="/" element={<NewHome />} />
+        <Route path="/progress" element={<Progress />} />
       </Routes>
     </BrowserRouter>
   );

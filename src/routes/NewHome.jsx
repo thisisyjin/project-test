@@ -1,10 +1,11 @@
 import InputText from '../components/search/InputText';
 
-const Progress = () => {
+const NewHome = () => {
   return (
     <>
       <InputText />
     </>
   );
 };
-export default Progress;
+
+export default NewHome;
