@@ -35,12 +35,16 @@ const InputNumber = () => {
         </label>
         <br />
         <label>
-          Number Keypad test 1
+          Number Keypad test 1 - numeric (소수점)
           <input type="number" pattern="[0-9]*" inputmode="numeric" />
         </label>
         <label>
-          Number Keypad test 2
+          Number Keypad test 2 - decimal
           <input type="number" pattern="[0-9]*" inputmode="decimal" />
+        </label>
+        <label>
+          Number Keypad test 3 - tel
+          <input type="number" pattern="[0-9]*" inputmode="tel" />
         </label>
 
         <InputTel type="tel" />
