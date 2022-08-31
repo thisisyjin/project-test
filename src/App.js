@@ -1,13 +1,15 @@
-import ImageUpload from './components/ImageUpload';
-import Responsive from './components/common/Responsive';
-import InputText from './components/InputText';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Home from './routes/Home';
+import Progress from './routes/Progress';
 
 function App() {
   return (
-    <Responsive>
-      <ImageUpload />
-      <InputText />
-    </Responsive>
+    <BrowserRouter basename={process.env.HOME_URL}>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/progress/:step" element={<Progress />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
