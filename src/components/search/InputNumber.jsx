@@ -33,6 +33,15 @@ const InputNumber = () => {
           number
           <InputNum type="number" />
         </label>
+        <br />
+        <label>
+          Number Keypad test 1
+          <input type="number" pattern="[0-9]*" inputmode="numeric" />
+        </label>
+        <label>
+          Number Keypad test 2
+          <input type="number" pattern="[0-9]*" inputmode="decimal" />
+        </label>
 
         <InputTel type="tel" />
       </form>
