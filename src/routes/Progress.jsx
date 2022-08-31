@@ -1,7 +1,12 @@
 import { useParams } from 'react-router-dom';
+import InputText from '../components/search/InputText';
 
 const Progress = () => {
   const { step } = useParams();
-  return <h1>{`Progress ${step}`}</h1>;
+  return (
+    <>
+      <InputText />
+    </>
+  );
 };
 export default Progress;

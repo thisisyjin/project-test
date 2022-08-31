@@ -92,6 +92,7 @@ const InputFile = () => {
 
   return (
     <InputFileBlock>
+      <h1 className="input-title">Unit Test</h1>
       <UploadLabel
         htmlFor="img-uploader"
         className="add-button"
