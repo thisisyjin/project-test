@@ -4,9 +4,12 @@ import styled from 'styled-components';
 const InputTextBlock = styled.div`
   padding: 0 10px;
   form {
-    margin-top: 30px;
     display: flex;
     height: 45px;
+  }
+
+  input {
+    font-size: 16px;
   }
 `;
 

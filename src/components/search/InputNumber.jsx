@@ -5,6 +5,12 @@ const InputNumberBlock = styled.div`
   display: flex;
   padding: 0 10px;
 
+  // reset
+  input:focus {
+    outline: none;
+    background-color: #eeeccc;
+  }
+
   form {
     position: relative;
     margin-top: 30px;
@@ -15,10 +21,11 @@ const InputNumberBlock = styled.div`
     border: none;
     padding: 10px 0;
     text-align: center;
-    font-size: 14px;
+    font-size: 16px;
   }
   input {
     width: 90px;
+    transition: all 0.3s;
   }
 
   select {
@@ -61,13 +68,17 @@ const InputNumber = () => {
 
   const handleNumber = (e) => {
     // 1. 숫자만 입력되게 ㅇ
-    // 2. 네글자 제한 -> 두번째 인풋 4자되면 포커스 넘어가게 ㅇ
+    // 2. 네글자 제한 -> 두번째 인풋 4자되면 포커스 넘어가게
     // 3. state에 저장 ㅇ
 
     const { name, value } = e.target;
     const regex = /^[0-9\b -]{0,13}$/;
+    const keyDown = e.nativeEvent.inputType;
 
     if (number[name].length === 4) {
+      if (keyDown === 'deleteContentBackward') {
+        setNumber({ ...number, [name]: value });
+      }
       return;
     }
 
