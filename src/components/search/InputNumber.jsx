@@ -31,17 +31,12 @@ const InputNumberBlock = styled.div`
   select {
     margin-right: 14px;
     font-size: 16px;
+    background-color: #fff;
+    padding: 12px 10px;
   }
 
   option {
     font-size: 16px;
-  }
-
-  button {
-    padding: 12px 10px;
-    margin-left: 20px;
-    background-color: #333;
-    color: #fff;
   }
 
   input + input {
@@ -89,7 +84,7 @@ const InputNumber = () => {
 
   const showState = (e) => {
     e.preventDefault();
-    if (!first) {
+    if (!first || second.length !== 4 || third.length !== 4) {
       setIsError(true);
     } else {
       setIsError(false);
@@ -99,21 +94,26 @@ const InputNumber = () => {
   };
 
   useEffect(() => {
+    console.log('검사');
     // 포커스 넘기기
     if (second.length === 4) {
       inputRef.current.focus();
     }
     // 유효성 검사
-  }, [second.length]);
+    if (third.length === 4) {
+      inputRef.current.blur(); // focus 잃게
+    }
+  }, [second.length, third.length]);
 
   return (
     <InputNumberBlock>
-      <form onSubmit={showState}>
+      <form>
         <select
           name="tel"
           id="first-number"
           onChange={onChangeSelect}
           value={first}
+          onBlur={showState}
         >
           <option value="">선택</option>
           <option value="010">010</option>
@@ -129,6 +129,7 @@ const InputNumber = () => {
           inputMode="decimal"
           onChange={handleNumber}
           value={second || ''}
+          onBlur={showState}
         />
         <input
           name="third"
@@ -138,9 +139,11 @@ const InputNumber = () => {
           onChange={handleNumber}
           value={third || ''}
           ref={inputRef}
+          onBlur={showState}
         />
-        <button>Show</button>
-        {isError && <div className="error-msg">다시 입력하세요.</div>}
+        {isError && (
+          <div className="error-msg">올바른 번호를 입력하여주세요.</div>
+        )}
       </form>
     </InputNumberBlock>
   );
