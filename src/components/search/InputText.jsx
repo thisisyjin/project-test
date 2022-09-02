@@ -2,12 +2,15 @@ import { useState } from 'react';
 import styled from 'styled-components';
 
 const InputTextBlock = styled.div`
-  width: 100%;
   padding: 0 10px;
+  form {
+    margin-top: 30px;
+    display: flex;
+    height: 45px;
+  }
 `;
 
 const StyledInput = styled.input`
-  margin-top: 20px;
   width: 80%;
   border: none;
   padding: 12px 24px;
@@ -19,14 +22,16 @@ const StyledInput = styled.input`
 
 const StyledButton = styled.button`
   background-color: #333;
+  display: block;
   color: #fff;
   margin-left: 10px;
   padding: 12px 10px;
+  height: 45px;
 `;
 
 const PositionFixed = styled.div`
   cursor: pointer;
-  background-color: rgb(65, 105, 225);
+  background-color: #4169e1;
   color: #fff;
   font-weight: 700;
   width: 200px;

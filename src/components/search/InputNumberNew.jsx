@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import styled from 'styled-components';
 
 const InputNumberBlock = styled.div`
@@ -40,12 +40,13 @@ const InputNumber = () => {
   const { first, second, third } = number;
 
   const onChangeSelect = (e) => {
+    const { name, value } = e.target;
     setNumber({ ...number, first: e.target.value });
   };
 
   const handleNumber = (e) => {
     // 1. 숫자만 입력되게
-    // 2. 네글자 제한 -> 두번째 인풋 4자되면 포커스 넘어가게
+    // 2. 네글자 제한 -> 두번째 인풋 4자되면 포커스넘어가게
     // 3. state에 저장
 
     const { name, value } = e.target;
@@ -59,15 +60,7 @@ const InputNumber = () => {
   const showState = (e) => {
     e.preventDefault();
     console.log(number);
-    console.log(Object.values(number).join('-')); // 010-1234-5678
   };
-
-  useEffect(() => {
-    // 포커스 넘기기
-    if (number.second.length === 4) {
-      inputRef.current.focus();
-    }
-  }, [number]);
 
   return (
     <InputNumberBlock>
