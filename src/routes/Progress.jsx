@@ -1,9 +1,9 @@
-import InputText from '../components/search/InputText';
+import SearchArea from '../components/search/SearchArea';
 
 const Progress = () => {
   return (
     <>
-      <InputText />
+      <SearchArea />
     </>
   );
 };

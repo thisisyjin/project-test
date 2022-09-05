@@ -55,6 +55,11 @@ const InputText = () => {
     setValue(e.target.value);
   };
 
+  const checkValidName = (e) => {
+    if (!value) {
+    }
+  };
+
   return (
     <InputTextBlock>
       <form className="input-form">
@@ -63,6 +68,8 @@ const InputText = () => {
           value={value}
           onChange={onChangeInput}
           placeholder="이름"
+          required
+          onBlur={checkValidName}
         />
         <StyledButton type="submit">Search</StyledButton>
       </form>
