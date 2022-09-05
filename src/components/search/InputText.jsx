@@ -32,22 +32,6 @@ const StyledButton = styled.button`
   height: 45px;
 `;
 
-const PositionFixed = styled.div`
-  cursor: pointer;
-  background-color: #4169e1;
-  color: #fff;
-  font-weight: 700;
-  width: 200px;
-  height: 65px;
-  border-radius: 200px;
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
 const InputText = () => {
   const [value, setValue] = useState('');
 
@@ -73,7 +57,6 @@ const InputText = () => {
         />
         <StyledButton type="submit">Search</StyledButton>
       </form>
-      <PositionFixed>카톡 문의하기</PositionFixed>
     </InputTextBlock>
   );
 };

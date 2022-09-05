@@ -3,8 +3,8 @@ import { ReactComponent as Share } from '../../assets/icons/share.svg';
 
 const ShareButtonBlock = styled.div`
   position: fixed;
-  bottom: 25px;
-  left: 25px;
+  bottom: 30px;
+  left: 30px;
 `;
 
 const StyledShare = styled.div`
