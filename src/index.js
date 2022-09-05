@@ -7,7 +7,7 @@ import { BrowserRouter } from '../node_modules/react-router-dom/index';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <BrowserRouter>
+  <BrowserRouter basename={process.env.PUBLIC_URL}>
     <HelmetProvider>
       <App />
     </HelmetProvider>
