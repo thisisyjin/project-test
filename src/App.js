@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       <Helmet>
-        <title>이거 바뀌냐?</title>
+        <title>[가격제보서비스] Unit Test</title>
         <link rel="icon" href="./assets/icons/favicon.ico" />
         <link rel="apple-touch-icon" href="./assets/icons/favicon.ico" />
       </Helmet>
