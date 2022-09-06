@@ -10,11 +10,12 @@ const InputTextBlock = styled.div`
 
   input {
     font-size: 16px;
+    border-bottom: 2px solid #33333360;
   }
 `;
 
 const StyledInput = styled.input`
-  width: 80%;
+  width: 60%;
   border: none;
   padding: 12px 24px;
   &:focus {
@@ -30,6 +31,7 @@ const StyledButton = styled.button`
   margin-left: 10px;
   padding: 12px 10px;
   height: 45px;
+  border-radius: 4px;
 `;
 
 const InputText = () => {

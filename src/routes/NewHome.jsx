@@ -4,11 +4,12 @@ import { Link } from '../../node_modules/react-router-dom/index';
 import styled from 'styled-components';
 import KakaoBanner from '../components/common/KakaoBanner';
 import ShareButton from '../components/main/ShareButton';
+import Header from '../components/common/Header';
 
 const StyledLink = styled(Link)`
-  width: 200px;
+  width: 300px;
   margin: 0 auto;
-  margin-top: 30px;
+  margin-top: 100px;
   text-align: center;
   background-color: royalblue;
   color: #fff;
@@ -19,6 +20,7 @@ const StyledLink = styled(Link)`
 const NewHome = () => {
   return (
     <>
+      <Header />
       <InputText />
       <InputNumber />
       <StyledLink to="/progress">Test Page 2</StyledLink>

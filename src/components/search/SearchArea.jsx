@@ -9,10 +9,23 @@ const SearchAreaBlock = styled.div`
     padding: 10px 0;
     margin-left: 10px;
     font-size: 16px;
+    border-bottom: 2px solid #33333360;
   }
   input {
     width: 150px;
-    margin-left: 8px;
+    margin-left: 15px;
+  }
+
+  .test-area {
+    margin-top: 100px;
+    margin-left: 20px;
+  }
+  p {
+    margin-top: 15px;
+    margin-left: 50px;
+  }
+  p + p {
+    margin-top: 8px;
   }
 `;
 
@@ -118,7 +131,7 @@ const SearchArea = () => {
         )}
       </select>
       <div>
-        <h1>선택한 지역</h1>
+        <h4 className="test-area">선택한 지역</h4>
         {mainArea && subArea && (
           <>
             <p>{data.main[mainArea]}</p>

@@ -25,6 +25,7 @@ const InputNumberBlock = styled.div`
   }
   input {
     width: 90px;
+    border-bottom: 2px solid #33333360;
     transition: all 0.3s;
   }
 
@@ -32,6 +33,7 @@ const InputNumberBlock = styled.div`
     margin-right: 14px;
     font-size: 16px;
     background-color: #fff;
+    border-bottom: 2px solid #33333360;
     padding: 12px 10px;
   }
 
