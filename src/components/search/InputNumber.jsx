@@ -33,6 +33,8 @@ const InputNumberBlock = styled.div`
   }
 
   .error-msg {
+    position: absolute;
+    z-index: -1;
     margin-top: 15px;
     color: red;
     font-size: 14px;
@@ -86,6 +88,10 @@ const InputNumber = () => {
     console.log(Object.values(number).join('-')); // 010-1234-5678
   };
 
+  const onSubmitForm = (e) => {
+    if (isError) e.preventDefault();
+  };
+
   useEffect(() => {
     console.log('검사');
     // 포커스 넘기기
@@ -99,7 +105,7 @@ const InputNumber = () => {
   }, [second.length, third.length]);
 
   useEffect(() => {
-    // 처음에 검사하기
+    // 처음에 검사하기 - 셋 다 입력되었는지? - 위에 useEffect랑 합칠순x?
     if (number.first && number.second && number.third) {
       // pass
     } else {
@@ -109,7 +115,7 @@ const InputNumber = () => {
 
   return (
     <InputNumberBlock>
-      <form>
+      <form onSubmit={onSubmitForm}>
         <Select
           desc="선택"
           options={['010', '011', '012', '031', '0132']}

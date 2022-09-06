@@ -48,9 +48,13 @@ const InputText = () => {
     }
   };
 
+  const onSubmitForm = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <InputTextBlock>
-      <form className="input-form">
+      <form className="input-form" onSubmit={onSubmitForm}>
         <StyledInput
           type="text"
           minLength="2"
