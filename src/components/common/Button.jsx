@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 const StyledBtn = styled.button`
   cursor: pointer;
-  margin-top: 100px;
   display: block;
-  width: 355px;
+  width: 300px;
   background-color: #333;
   color: #fff;
   padding: 20px 30px;
   border-radius: 8px;
+  margin: 0 auto;
 
   &:disabled {
     cursor: default;

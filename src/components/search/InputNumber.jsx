@@ -6,6 +6,10 @@ import Button from '../common/Button';
 const InputNumberBlock = styled.div`
   padding: 0 10px;
 
+  .mb {
+    margin-bottom: 80px;
+  }
+
   // reset
   input:focus {
     outline: none;
@@ -25,8 +29,8 @@ const InputNumberBlock = styled.div`
     font-size: 16px;
   }
   input {
-    margin-left: 14px;
-    width: 90px;
+    margin-left: 12px;
+    width: 85px;
     border-bottom: 2px solid #33333360;
     transition: all 0.3s;
     max-height: 50px;
@@ -41,7 +45,7 @@ const InputNumberBlock = styled.div`
   }
 
   .input-group {
-    margin-left: 100px;
+    margin-left: 98px;
   }
 `;
 
@@ -146,6 +150,7 @@ const InputNumber = () => {
         {isError && (
           <div className="error-msg">올바른 번호를 입력하여주세요.</div>
         )}
+        <div className="mb"></div>
         <Button text="Submit" isError={isError} />
       </form>
     </InputNumberBlock>
