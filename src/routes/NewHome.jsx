@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import KakaoBanner from '../components/common/KakaoBanner';
 import ShareButton from '../components/main/ShareButton';
 import Header from '../components/common/Header';
+import Select from '../components/common/Select';
 
 const StyledLink = styled(Link)`
   width: 300px;
@@ -26,6 +27,7 @@ const NewHome = () => {
       <StyledLink to="/progress">Test Page 2</StyledLink>
       <KakaoBanner />
       <ShareButton />
+      <Select desc="골라보세요" options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
     </>
   );
 };
