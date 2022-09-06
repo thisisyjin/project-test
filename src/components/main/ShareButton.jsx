@@ -3,8 +3,8 @@ import { ReactComponent as Share } from '../../assets/icons/share.svg';
 
 const ShareButtonBlock = styled.div`
   position: fixed;
-  bottom: 30px;
-  left: 30px;
+  bottom: 18px;
+  left: 18px;
 `;
 
 const StyledShare = styled.div`
@@ -24,7 +24,7 @@ const ShareButton = () => {
     if (navigator.share) {
       navigator.share({
         title: '가격제보 서비스',
-        text: 'unit test - share',
+        text: 'unit test - share api',
         url: 'https://github.com/',
       });
     } else {
