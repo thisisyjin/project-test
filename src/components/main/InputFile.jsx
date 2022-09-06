@@ -27,6 +27,7 @@ const UploadLabel = styled.label`
     width: 100%;
     padding: 30px 42px;
     font-size: 20px;
+    border-radius: 10px;
   }
 `;
 
@@ -92,7 +93,7 @@ const InputFile = () => {
 
   return (
     <InputFileBlock>
-      <h1 className="input-title">Unit Test</h1>
+      <h1 className="input-title">ImageForm Test</h1>
       <UploadLabel
         htmlFor="img-uploader"
         className="add-button"

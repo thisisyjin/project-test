@@ -1,5 +1,6 @@
 import { Helmet } from 'react-helmet-async';
 import { Routes, Route } from 'react-router-dom';
+import Home from './routes/Home';
 import NewHome from './routes/NewHome';
 import Progress from './routes/Progress';
 
@@ -14,6 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<NewHome />} />
         <Route path="/progress" element={<Progress />} />
+        <Route path="/test" element={<Home />} />
       </Routes>
     </>
   );

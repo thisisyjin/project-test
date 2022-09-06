@@ -5,19 +5,18 @@ import styled from 'styled-components';
 import KakaoBanner from '../components/common/KakaoBanner';
 import ShareButton from '../components/main/ShareButton';
 import Header from '../components/common/Header';
-import Select from '../components/common/Select';
 
 const StyledLink = styled(Link)`
-  width: 300px;
-  margin: 0 auto;
-  margin-top: 100px;
   text-align: center;
-  background-color: royalblue;
+  background-color: #000;
   color: #fff;
-  display: block;
   padding: 20px;
   border-radius: 10px;
+  margin-left: 40px;
+  position: relative;
+  top: 100px;
 `;
+
 const NewHome = () => {
   return (
     <>
@@ -25,9 +24,9 @@ const NewHome = () => {
       <InputText />
       <InputNumber />
       <StyledLink to="/progress">Test Page 2</StyledLink>
+      <StyledLink to="/test">Test Page 3</StyledLink>
       <KakaoBanner />
       <ShareButton />
-      <Select desc="골라보세요" options={[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]} />
     </>
   );
 };

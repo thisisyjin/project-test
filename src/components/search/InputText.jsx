@@ -12,6 +12,14 @@ const InputTextBlock = styled.div`
     font-size: 16px;
     border-bottom: 2px solid #33333360;
   }
+
+  span {
+    position: relative;
+    top: 22px;
+    left: 20px;
+    color: red;
+    font-size: 14px;
+  }
 `;
 
 const StyledInput = styled.input`
@@ -24,25 +32,19 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledButton = styled.button`
-  background-color: #333;
-  display: block;
-  color: #fff;
-  margin-left: 10px;
-  padding: 12px 10px;
-  height: 45px;
-  border-radius: 4px;
-`;
-
 const InputText = () => {
   const [value, setValue] = useState('');
+  const [isError, setIsError] = useState(false);
 
   const onChangeInput = (e) => {
     setValue(e.target.value);
   };
 
   const checkValidName = (e) => {
-    if (!value) {
+    if (value.length < 2) {
+      setIsError(true);
+    } else {
+      setIsError(false);
     }
   };
 
@@ -51,13 +53,14 @@ const InputText = () => {
       <form className="input-form">
         <StyledInput
           type="text"
+          minLength="2"
           value={value}
           onChange={onChangeInput}
           placeholder="이름"
           required
           onBlur={checkValidName}
         />
-        <StyledButton type="submit">Search</StyledButton>
+        {isError && <span>다시 확인해주세요.</span>}
       </form>
     </InputTextBlock>
   );

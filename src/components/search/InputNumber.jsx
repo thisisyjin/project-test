@@ -1,8 +1,9 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
+import Select from '../common/Select';
+import Button from '../common/Button';
 
 const InputNumberBlock = styled.div`
-  display: flex;
   padding: 0 10px;
 
   // reset
@@ -24,31 +25,21 @@ const InputNumberBlock = styled.div`
     font-size: 16px;
   }
   input {
+    margin-left: 14px;
     width: 90px;
     border-bottom: 2px solid #33333360;
     transition: all 0.3s;
-  }
-
-  select {
-    margin-right: 14px;
-    font-size: 16px;
-    background-color: #fff;
-    border-bottom: 2px solid #33333360;
-    padding: 12px 10px;
-  }
-
-  option {
-    font-size: 16px;
-  }
-
-  input + input {
-    margin-left: 14px;
+    max-height: 50px;
   }
 
   .error-msg {
-    position: absolute;
+    margin-top: 15px;
     color: red;
     font-size: 14px;
+  }
+
+  .input-group {
+    margin-left: 100px;
   }
 `;
 
@@ -59,9 +50,9 @@ const InputNumber = () => {
 
   const { first, second, third } = number;
 
-  const onChangeSelect = (e) => {
-    setNumber({ ...number, first: e.target.value });
-  };
+  // const onChangeSelect = (e) => {
+  //   setNumber({ ...number, first: e.target.innerText });
+  // };
 
   const handleNumber = (e) => {
     // 1. 숫자만 입력되게 ㅇ
@@ -107,45 +98,49 @@ const InputNumber = () => {
     }
   }, [second.length, third.length]);
 
+  useEffect(() => {
+    // 처음에 검사하기
+    if (number.first && number.second && number.third) {
+      // pass
+    } else {
+      setIsError(true);
+    }
+  }, [number]);
+
   return (
     <InputNumberBlock>
       <form>
-        <select
-          name="tel"
-          id="first-number"
-          onChange={onChangeSelect}
-          value={first}
-          onBlur={showState}
-        >
-          <option value="">선택</option>
-          <option value="010">010</option>
-          <option value="011">011</option>
-          <option value="012">012</option>
-          <option value="0130">0130</option>
-        </select>
-
-        <input
-          name="second"
-          type="number"
-          pattern="[0-9]*"
-          inputMode="decimal"
-          onChange={handleNumber}
-          value={second || ''}
-          onBlur={showState}
+        <Select
+          desc="선택"
+          options={['010', '011', '012', '031', '0132']}
+          setNumber={setNumber}
+          number={number}
         />
-        <input
-          name="third"
-          type="number"
-          pattern="[0-9]*"
-          inputMode="decimal"
-          onChange={handleNumber}
-          value={third || ''}
-          ref={inputRef}
-          onBlur={showState}
-        />
+        <div className="input-group">
+          <input
+            name="second"
+            type="number"
+            pattern="[0-9]*"
+            inputMode="decimal"
+            onChange={handleNumber}
+            value={second || ''}
+            onBlur={showState}
+          />
+          <input
+            name="third"
+            type="number"
+            pattern="[0-9]*"
+            inputMode="decimal"
+            onChange={handleNumber}
+            value={third || ''}
+            ref={inputRef}
+            onBlur={showState}
+          />
+        </div>
         {isError && (
           <div className="error-msg">올바른 번호를 입력하여주세요.</div>
         )}
+        <Button text="Submit" isError={isError} />
       </form>
     </InputNumberBlock>
   );
