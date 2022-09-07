@@ -15,7 +15,7 @@ const UploadLabel = styled.label`
   border: none;
   cursor: pointer;
   margin-top: 120px;
-  margin-bottom: 80px;
+  margin-bottom: 40px;
 
   .label-text {
     display: flex;
@@ -109,6 +109,12 @@ const InputFile = () => {
         />
         <span className="label-text">+ 사진 촬영 및 등록</span>
       </UploadLabel>
+      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi nemo,
+      laboriosam odio facilis obcaecati suscipit aspernatur voluptatum non, enim
+      ipsam reprehenderit quo repellat vitae consequuntur totam culpa! Delectus
+      aliquid incidunt velit molestias cum, dicta, ex asperiores voluptatum
+      ipsam rerum nisi. Libero dolore laboriosam voluptates?
+      <p></p>
       <PreviewBlock>
         {fileImgs &&
           fileImgs.map((img, id) => (

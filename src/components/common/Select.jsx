@@ -56,13 +56,13 @@ const Select = ({ options, desc = '값을 선택하세요', setNumber, number })
 
   const selectOption = (e) => {
     const innerText = e.target.innerText;
-    setSelectedValue(innerText); // 렌더링용
+    setSelectedValue(innerText); // 1. 렌더링용
     setFilterOptions(options.filter((op) => String(op) !== innerText)); // string 이므로
-    setNumber({ ...number, first: innerText }); // 데이터 부모로 보내는 용
+    setNumber({ ...number, first: innerText }); // 2. 데이터 부모로 보내는 용
   };
 
   return (
-    <StyledSelect onClick={onClickSelect}>
+    <StyledSelect onClick={onClickSelect} onBlur={onClickSelect}>
       <label>{selectedValue}</label>
       <ul>
         {showOption &&

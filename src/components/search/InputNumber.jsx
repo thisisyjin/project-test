@@ -66,7 +66,7 @@ const InputNumber = () => {
     // 3. state에 저장 ㅇ
 
     const { name, value } = e.target;
-    const regex = /^[0-9\b -]{0,13}$/;
+    const regex = /^[0-9\b -]{0,13}$/; // 정규표현식
     const keyDown = e.nativeEvent.inputType;
 
     if (number[name].length === 4) {
