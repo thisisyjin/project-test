@@ -19,7 +19,10 @@ function App() {
           content="아프지마 프론트엔드 테스트중입니다. 아프지마 최고. 가격제보시스템 프로젝트 화이팅."
         />
         <meta property="og:image" content="./logoex.png" />
-        <meta property="og:url" content="https://afzima.com/" />
+        <meta
+          property="og:url"
+          content="https://thisisyjin.github.io/project-test/"
+        />
       </Helmet>
       <Routes>
         <Route path="/" element={<NewHome />} />
