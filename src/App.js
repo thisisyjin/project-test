@@ -11,6 +11,15 @@ function App() {
         <title>[가격제보서비스] Unit Test</title>
         <link rel="icon" href="./assets/icons/favicon.ico" />
         <link rel="apple-touch-icon" href="./assets/icons/favicon.ico" />
+        <meta property="og:type" content="website" />
+        <meta property="og:site_name" content="가격제보시스템" />
+        <meta property="og:title" content="아프지마 - 가격제보시스템" />
+        <meta
+          property="og:description"
+          content="아프지마 프론트엔드 테스트중입니다. 아프지마 최고. 가격제보시스템 프로젝트 화이팅."
+        />
+        <meta property="og:image" content="./logoex.png" />
+        <meta property="og:url" content="https://afzima.com/" />
       </Helmet>
       <Routes>
         <Route path="/" element={<NewHome />} />
