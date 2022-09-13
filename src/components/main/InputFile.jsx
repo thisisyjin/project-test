@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import axios from '../../../node_modules/axios/index';
 import { ReactComponent as Close } from '../../assets/icons/close.svg';
 // import axios from 'axios';
 
@@ -14,7 +15,7 @@ const InputFileBlock = styled.div`
 const UploadLabel = styled.label`
   border: none;
   cursor: pointer;
-  margin-top: 120px;
+  margin-top: 40px;
   margin-bottom: 40px;
 
   .label-text {
@@ -23,8 +24,9 @@ const UploadLabel = styled.label`
     justify-content: center;
     background-color: #333;
     color: #fff;
-    width: 100%;
-    padding: 30px 42px;
+    width: 250px;
+    margin: 0 auto;
+    padding: 26px 42px;
     font-size: 20px;
     border-radius: 10px;
   }
@@ -66,10 +68,26 @@ const PreviewImg = styled.img`
   height: 80px;
 `;
 
+const StyledUploadButton = styled.button`
+  border: none;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  font-size: 20px;
+  width: 250px;
+  margin: 0 auto;
+  padding: 25px;
+  margin-top: 40px;
+  border-radius: 8px;
+`;
+
 const InputFile = () => {
   const [fileImgs, setFileImgs] = useState([]);
+  const [selectedFiles, setSelectedFiles] = useState(null);
 
+  //
   const onUploadImg = (e) => {
+    console.log('하이');
     const fileObjs = e.target.files;
     let imgUrlArr = [...fileImgs];
 
@@ -79,10 +97,12 @@ const InputFile = () => {
     }
 
     if (imgUrlArr.length > 10) {
-      alert('10장 이하 첨부');
+      alert('10장 이하 첨부하세요');
+      return;
     }
 
     setFileImgs(imgUrlArr);
+    setSelectedFiles(fileObjs);
   };
 
   // 이미지 삭제
@@ -90,14 +110,19 @@ const InputFile = () => {
     setFileImgs(fileImgs.filter((v, i) => i !== id));
   };
 
+  // 업로드시
+  const onClickButton = (e) => {
+    const formData = new FormData();
+    formData.append('upload', selectedFiles);
+    console.log(selectedFiles);
+
+    // axios.post 요청
+  };
+
   return (
     <InputFileBlock>
       <h1 className="input-title">ImageForm Test</h1>
-      <UploadLabel
-        htmlFor="img-uploader"
-        className="add-button"
-        onChange={onUploadImg}
-      >
+      <UploadLabel htmlFor="img-uploader" className="add-button">
         <input
           style={{ display: 'none' }}
           type="file"
@@ -109,12 +134,7 @@ const InputFile = () => {
         />
         <span className="label-text">+ 사진 촬영 및 등록</span>
       </UploadLabel>
-      Lorem ipsum dolor, sit amet consectetur adipisicing elit. Modi nemo,
-      laboriosam odio facilis obcaecati suscipit aspernatur voluptatum non, enim
-      ipsam reprehenderit quo repellat vitae consequuntur totam culpa! Delectus
-      aliquid incidunt velit molestias cum, dicta, ex asperiores voluptatum
-      ipsam rerum nisi. Libero dolore laboriosam voluptates?
-      <p></p>
+
       <PreviewBlock>
         {fileImgs &&
           fileImgs.map((img, id) => (
@@ -124,6 +144,7 @@ const InputFile = () => {
             </PreviewWrap>
           ))}
       </PreviewBlock>
+      <StyledUploadButton onClick={onClickButton}>업로드</StyledUploadButton>
     </InputFileBlock>
   );
 };
