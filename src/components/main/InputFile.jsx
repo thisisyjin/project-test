@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import styled from 'styled-components';
-import axios from '../../../node_modules/axios/index';
 import { ReactComponent as Close } from '../../assets/icons/close.svg';
 // import axios from 'axios';
 
@@ -13,22 +12,22 @@ const InputFileBlock = styled.div`
 `;
 
 const UploadLabel = styled.label`
-  border: none;
+  width: 100%;
   cursor: pointer;
   margin-top: 40px;
   margin-bottom: 40px;
 
   .label-text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #333;
-    color: #fff;
-    width: 250px;
+    display: block;
+    text-align: center;
+    background-color: #fff;
+    border: 2px solid #333;
+    color: #333;
+    width: 90%;
     margin: 0 auto;
-    padding: 26px 42px;
+    padding: 26px 50px;
     font-size: 20px;
-    border-radius: 10px;
+    border-radius: 12px;
   }
 `;
 
@@ -71,21 +70,24 @@ const PreviewImg = styled.img`
 const StyledUploadButton = styled.button`
   border: none;
   cursor: pointer;
-  background-color: #000;
+  background-color: royalblue;
   color: #fff;
   font-size: 20px;
-  width: 250px;
+  width: 95%;
   margin: 0 auto;
   padding: 25px;
   margin-top: 40px;
-  border-radius: 8px;
+
+  &:disabled {
+    background-color: #eee;
+    color: #bbb;
+  }
 `;
 
 const InputFile = () => {
   const [fileImgs, setFileImgs] = useState([]);
   const [selectedFiles, setSelectedFiles] = useState(null);
 
-  //
   const onUploadImg = (e) => {
     console.log('하이');
     const fileObjs = e.target.files;
@@ -98,7 +100,7 @@ const InputFile = () => {
 
     if (imgUrlArr.length > 10) {
       alert('10장 이하 첨부하세요');
-      return;
+      return; // undefined or null
     }
 
     setFileImgs(imgUrlArr);
@@ -108,6 +110,8 @@ const InputFile = () => {
   // 이미지 삭제
   const deleteImg = (id) => {
     setFileImgs(fileImgs.filter((v, i) => i !== id));
+    setSelectedFiles([...selectedFiles].filter((v, i) => i !== id));
+    // ❓ 배열 형태로 filter 해도 되는건지 ?
   };
 
   // 업로드시
@@ -144,7 +148,9 @@ const InputFile = () => {
             </PreviewWrap>
           ))}
       </PreviewBlock>
-      <StyledUploadButton onClick={onClickButton}>업로드</StyledUploadButton>
+      <StyledUploadButton disabled={!fileImgs.length} onClick={onClickButton}>
+        업로드
+      </StyledUploadButton>
     </InputFileBlock>
   );
 };

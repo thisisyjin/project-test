@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
+import { useState, useRef } from 'react';
 import styled from 'styled-components';
 
 const InputTextBlock = styled.div`
@@ -33,6 +34,8 @@ const StyledInput = styled.input`
 `;
 
 const InputText = () => {
+  const nameRef = useRef(null);
+
   const [value, setValue] = useState('');
   const [isError, setIsError] = useState(false);
 
@@ -52,6 +55,10 @@ const InputText = () => {
     e.preventDefault();
   };
 
+  useEffect(() => {
+    nameRef.current.focus();
+  });
+
   return (
     <InputTextBlock>
       <form className="input-form" onSubmit={onSubmitForm}>
@@ -63,6 +70,7 @@ const InputText = () => {
           placeholder="이름"
           required
           onBlur={checkValidName}
+          ref={nameRef}
         />
         {isError && <span>다시 확인해주세요.</span>}
       </form>
