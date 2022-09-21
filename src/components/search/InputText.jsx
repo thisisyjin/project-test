@@ -9,11 +9,6 @@ const InputTextBlock = styled.div`
     height: 45px;
   }
 
-  input {
-    font-size: 16px;
-    border-bottom: 2px solid #33333360;
-  }
-
   span {
     position: relative;
     top: 22px;
@@ -24,20 +19,24 @@ const InputTextBlock = styled.div`
 `;
 
 const StyledInput = styled.input`
+  display: block;
+  position: relative;
   width: 60%;
   border: none;
+  font-size: 16px;
   padding: 12px 24px;
+  border-bottom: 2px solid #33333360;
+  transition: all 0.25s ease-in;
   &:focus {
     outline: none;
-    background-color: #eeeccc;
+    border-bottom: 2px solid royalblue;
   }
 `;
 
-const InputText = () => {
+const InputText = ({ isTextError, setIsTextError }) => {
   const nameRef = useRef(null);
 
   const [value, setValue] = useState('');
-  const [isError, setIsError] = useState(false);
 
   const onChangeInput = (e) => {
     setValue(e.target.value);
@@ -45,9 +44,9 @@ const InputText = () => {
 
   const checkValidName = (e) => {
     if (value.length < 2) {
-      setIsError(true);
+      setIsTextError(true);
     } else {
-      setIsError(false);
+      setIsTextError(false);
     }
   };
 
@@ -57,7 +56,7 @@ const InputText = () => {
 
   useEffect(() => {
     nameRef.current.focus();
-  });
+  }, []);
 
   return (
     <InputTextBlock>
@@ -72,7 +71,7 @@ const InputText = () => {
           onBlur={checkValidName}
           ref={nameRef}
         />
-        {isError && <span>다시 확인해주세요.</span>}
+        {isTextError && <span>2자 이상 입력하세요.</span>}
       </form>
     </InputTextBlock>
   );

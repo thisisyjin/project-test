@@ -5,6 +5,7 @@ import styled from 'styled-components';
 import KakaoBanner from '../components/common/KakaoBanner';
 import ShareButton from '../components/main/ShareButton';
 import Header from '../components/common/Header';
+import InputGroup from '../components/search/InputGroup';
 
 const StyledLink = styled(Link)`
   position: relative;
@@ -27,8 +28,7 @@ const NewHome = () => {
   return (
     <>
       <Header />
-      <InputText />
-      <InputNumber />
+      <InputGroup />
       <StyledHr />
       {/* <StyledLink to="/progress">Test Page 2</StyledLink> */}
       <StyledLink to="/test">Test Page 3</StyledLink>

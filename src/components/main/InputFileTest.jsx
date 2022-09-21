@@ -3,17 +3,25 @@ import styled from 'styled-components';
 import { ReactComponent as Close } from '../../assets/icons/close.svg';
 // import axios from 'axios';
 
-const InputFileBlock = styled.div`
+const InputFileTestBlock = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 0 10px;
+
+  .img-header {
+    width: 100%;
+    padding: 0 12px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+  }
 `;
 
 const UploadLabel = styled.label`
   cursor: pointer;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 40px;
 
   .label-text {
@@ -43,7 +51,7 @@ const StyledClose = styled(Close)`
 `;
 
 const PreviewBlock = styled.div`
-  width: 344px;
+  width: 95%;
   display: flex;
   align-items: center;
   justify-content: start;
@@ -53,7 +61,7 @@ const PreviewBlock = styled.div`
 
 const PreviewWrap = styled.div`
   position: relative;
-  margin-right: 8px;
+  margin-right: 10px;
   &:nth-child(4n) {
     margin-right: 0;
   }
@@ -61,8 +69,8 @@ const PreviewWrap = styled.div`
 
 const PreviewImg = styled.img`
   position: relative;
-  width: 80px;
-  height: 80px;
+  width: 75px;
+  height: 75px;
 `;
 
 const StyledUploadButton = styled.button`
@@ -73,8 +81,8 @@ const StyledUploadButton = styled.button`
   font-size: 20px;
   width: 95%;
   margin: 0 auto;
-  padding: 25px;
-  margin-top: 40px;
+  padding: 25px 0;
+  margin-top: 20px;
 
   &:disabled {
     background-color: #eee;
@@ -82,46 +90,61 @@ const StyledUploadButton = styled.button`
   }
 `;
 
-const InputFile = () => {
+const InputFileTest = () => {
+  const formData = new FormData();
   const [fileImgs, setFileImgs] = useState([]);
-  const [selectedFiles, setSelectedFiles] = useState(null);
+  const [selectedFiles, setSelectedFiles] = useState([]);
 
   const onUploadImg = (e) => {
-    console.log('하이');
     const fileObjs = e.target.files;
     let imgUrlArr = [...fileImgs];
 
+    const recentFiles = [...selectedFiles];
+
+    if (recentFiles.length + fileObjs.length > 10) {
+      alert('열장 넘었어용 !');
+      return;
+    }
+
+    // 미리보기 이미지 url 등록
     for (let i = 0; i < fileObjs.length; i++) {
       const currentImgUrl = URL.createObjectURL(fileObjs[i]);
       imgUrlArr.push(currentImgUrl);
     }
 
-    if (imgUrlArr.length > 10) {
-      alert('10장 이하 첨부하세요');
-      return; // undefined or null
-    }
-
+    setSelectedFiles([...selectedFiles, ...fileObjs]);
     setFileImgs(imgUrlArr);
-    setSelectedFiles(fileObjs);
+
+    // formData append 하기
+    for (let i = 0; i < fileObjs.length; i++) {
+      formData.append('img', fileObjs[i]);
+    }
+    for (const key of formData) console.log(key); // formData 객체 내부 조회
   };
 
   // 이미지 삭제
   const deleteImg = (id) => {
     setFileImgs(fileImgs.filter((v, i) => i !== id));
     setSelectedFiles([...selectedFiles].filter((v, i) => i !== id));
-    // ❓ 배열 형태로 filter 해도 되는건지 ?
   };
 
   // 업로드시
   const onClickButton = (e) => {
-    const formData = new FormData();
-    formData.append('upload', selectedFiles);
     console.log(selectedFiles);
-
+    console.log(selectedFiles.length); // Redux -> image.uploadPicCnt
     // axios.post 요청
+
+    // Array -> FileList 변환
+    const dataTransfer = new DataTransfer();
+    selectedFiles.forEach((selectedFile) => {
+      dataTransfer.items.add(selectedFile);
+    });
+    console.log(dataTransfer.files); // FileList 객체
+    // Redux -> image.imgId
   };
+
   return (
-    <InputFileBlock>
+    <InputFileTestBlock>
       <h1 className="input-title">ImageForm Test</h1>
       <UploadLabel htmlFor="img-uploader" className="add-button">
         <input
@@ -136,6 +159,11 @@ const InputFile = () => {
         <span className="label-text">+ 사진 촬영 및 등록</span>
       </UploadLabel>
 
+      <div className="img-header">
+        <h3>사진 등록</h3>
+        {selectedFiles ? `${selectedFiles.length}/10장` : '0/10장'}
+      </div>
+
       <PreviewBlock>
         {fileImgs &&
           fileImgs.map((img, id) => (
@@ -148,8 +176,8 @@ const InputFile = () => {
       <StyledUploadButton disabled={!fileImgs.length} onClick={onClickButton}>
         업로드
       </StyledUploadButton>
-    </InputFileBlock>
+    </InputFileTestBlock>
   );
 };
 
-export default InputFile;
+export default InputFileTest;

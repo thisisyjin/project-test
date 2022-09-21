@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
 import Select from '../common/Select';
-import Button from '../common/Button';
 
 const InputNumberBlock = styled.div`
   padding: 0 10px;
@@ -13,7 +12,6 @@ const InputNumberBlock = styled.div`
   // reset
   input:focus {
     outline: none;
-    background-color: #eeeccc;
   }
 
   form {
@@ -27,6 +25,11 @@ const InputNumberBlock = styled.div`
     padding: 10px 0;
     text-align: center;
     font-size: 16px;
+    transition: all 0.25s ease-in;
+    &:focus {
+      outline: none;
+      border-bottom: 2px solid royalblue;
+    }
   }
   input {
     margin-left: 12px;
@@ -49,10 +52,9 @@ const InputNumberBlock = styled.div`
   }
 `;
 
-const InputNumber = () => {
+const InputNumber = ({ isNumError, setIsNumError }) => {
   const inputRef = useRef(null);
   const [number, setNumber] = useState({ first: '', second: '', third: '' });
-  const [isError, setIsError] = useState(false);
 
   const { first, second, third } = number;
 
@@ -84,16 +86,16 @@ const InputNumber = () => {
   const showState = (e) => {
     e.preventDefault();
     if (!first || second.length !== 4 || third.length !== 4) {
-      setIsError(true);
+      setIsNumError(true);
     } else {
-      setIsError(false);
+      setIsNumError(false);
     }
     console.log(number);
     console.log(Object.values(number).join('-')); // 010-1234-5678
   };
 
   const onSubmitForm = (e) => {
-    if (isError) e.preventDefault();
+    if (isNumError) e.preventDefault();
   };
 
   useEffect(() => {
@@ -113,7 +115,7 @@ const InputNumber = () => {
     if (number.first && number.second && number.third) {
       // pass
     } else {
-      setIsError(true);
+      setIsNumError(true);
     }
   }, [number]);
 
@@ -147,11 +149,10 @@ const InputNumber = () => {
             onBlur={showState}
           />
         </div>
-        {isError && (
+        {isNumError && (
           <div className="error-msg">올바른 번호를 입력하여주세요.</div>
         )}
         <div className="mb"></div>
-        <Button text="Submit" isError={isError} />
       </form>
     </InputNumberBlock>
   );
