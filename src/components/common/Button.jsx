@@ -17,9 +17,9 @@ const StyledBtn = styled.button`
   }
 `;
 
-const Button = ({ text, isError }) => {
+const Button = ({ text, isError, onClickFun }) => {
   return (
-    <StyledBtn type="submit" disabled={isError}>
+    <StyledBtn type="submit" disabled={isError} onClick={onClickFun}>
       {text}
     </StyledBtn>
   );

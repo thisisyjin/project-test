@@ -17,6 +17,16 @@ const InputFileTestBlock = styled.div`
     justify-content: space-between;
     margin-bottom: 20px;
   }
+
+  .img-count {
+    font-size: 15px;
+  }
+
+  .img-num {
+    font-size: 18px;
+    font-weight: 700;
+    margin-right: 2px;
+  }
 `;
 
 const UploadLabel = styled.label`
@@ -40,11 +50,11 @@ const UploadLabel = styled.label`
 const StyledClose = styled(Close)`
   position: absolute;
   bottom: 14px;
-  right: 9px;
+  right: 8px;
   background-color: rgba(0, 0, 0, 0.7);
   color: #fff;
-  width: 20px;
-  height: 20px;
+  width: 22px;
+  height: 22px;
   text-align: center;
   line-height: 16px;
   border-radius: 50%;
@@ -161,7 +171,15 @@ const InputFileTest = () => {
 
       <div className="img-header">
         <h3>사진 등록</h3>
-        {selectedFiles ? `${selectedFiles.length}/10장` : '0/10장'}
+        {selectedFiles.length ? (
+          <span className="img-count">
+            <span className="img-num">{selectedFiles.length}</span>/10장 첨부
+          </span>
+        ) : (
+          <span className="img-count">
+            <span className="img-num">0</span>/10장 첨부
+          </span>
+        )}
       </div>
 
       <PreviewBlock>

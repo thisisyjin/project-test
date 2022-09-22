@@ -5,26 +5,34 @@ import styled from 'styled-components';
 const InputTextBlock = styled.div`
   padding: 0 10px;
   form {
+    position: relative;
     display: flex;
     height: 45px;
+    align-items: center;
+  }
+
+  label {
+    margin-left: 10px;
+    margin-right: 15px;
+    font-weight: 500;
   }
 
   span {
-    position: relative;
-    top: 22px;
-    left: 20px;
+    position: absolute;
+    top: 14px;
+    right: 4px;
     color: red;
-    font-size: 14px;
+    font-size: 13px;
   }
 `;
 
 const StyledInput = styled.input`
   display: block;
   position: relative;
-  width: 60%;
+  width: 11rem;
   border: none;
   font-size: 16px;
-  padding: 12px 24px;
+  padding: 12px;
   border-bottom: 2px solid #33333360;
   transition: all 0.25s ease-in;
   &:focus {
@@ -52,6 +60,7 @@ const InputText = ({ isTextError, setIsTextError }) => {
 
   const onSubmitForm = (e) => {
     e.preventDefault();
+    // 글자수 제한만 걸어두기 - 리로드는 방지
   };
 
   useEffect(() => {
@@ -61,12 +70,14 @@ const InputText = ({ isTextError, setIsTextError }) => {
   return (
     <InputTextBlock>
       <form className="input-form" onSubmit={onSubmitForm}>
+        <label htmlFor="name">이름</label>
         <StyledInput
+          id="name"
           type="text"
           minLength="2"
           value={value}
           onChange={onChangeInput}
-          placeholder="이름"
+          placeholder="이름을 입력해 주세요."
           required
           onBlur={checkValidName}
           ref={nameRef}

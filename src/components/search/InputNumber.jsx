@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import styled from 'styled-components';
-import Select from '../common/Select';
+import closed from '../../assets/icons/closed.svg';
+import opened from '../../assets/icons/opened.svg';
 
 const InputNumberBlock = styled.div`
   padding: 0 10px;
@@ -16,7 +17,16 @@ const InputNumberBlock = styled.div`
 
   form {
     position: relative;
-    margin-top: 30px;
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    padding-bottom: 30px;
+  }
+
+  label {
+    margin-left: 10px;
+    margin-right: 14px;
+    font-weight: 500;
   }
 
   select,
@@ -31,30 +41,47 @@ const InputNumberBlock = styled.div`
       border-bottom: 2px solid royalblue;
     }
   }
+
   input {
     margin-left: 12px;
-    width: 85px;
+    width: 80px;
     border-bottom: 2px solid #33333360;
     transition: all 0.3s;
     max-height: 50px;
   }
 
+  select {
+    border-bottom: 2px solid #33333360;
+    width: 70px;
+    -webkit-appearance: none;
+    background-image: url(${closed});
+    background-position: 110%;
+    background-repeat: no-repeat;
+    background-size: 20px;
+    padding-right: 5px;
+
+    &:focus {
+      background-image: url(${opened});
+      background-position: 110%;
+      background-repeat: no-repeat;
+      background-size: 20px;
+    }
+  }
+
   .error-msg {
     position: absolute;
+    bottom: 14px;
+    left: 8px;
     z-index: -1;
     margin-top: 15px;
     color: red;
     font-size: 14px;
   }
-
-  .input-group {
-    margin-left: 98px;
-  }
 `;
 
 const InputNumber = ({ isNumError, setIsNumError }) => {
   const inputRef = useRef(null);
-  const [number, setNumber] = useState({ first: '', second: '', third: '' });
+  const [number, setNumber] = useState({ first: '010', second: '', third: '' });
 
   const { first, second, third } = number;
 
@@ -71,6 +98,8 @@ const InputNumber = ({ isNumError, setIsNumError }) => {
     const regex = /^[0-9\b -]{0,13}$/; // 정규표현식
     const keyDown = e.nativeEvent.inputType;
 
+    if (value === '.') return;
+
     if (number[name].length === 4) {
       if (keyDown === 'deleteContentBackward') {
         setNumber({ ...number, [name]: value });
@@ -81,6 +110,10 @@ const InputNumber = ({ isNumError, setIsNumError }) => {
     if (regex.test(value)) {
       setNumber({ ...number, [name]: value });
     }
+  };
+
+  const onChangeSelect = (e) => {
+    setNumber({ ...number, first: e.target.value });
   };
 
   const showState = (e) => {
@@ -95,7 +128,12 @@ const InputNumber = ({ isNumError, setIsNumError }) => {
   };
 
   const onSubmitForm = (e) => {
-    if (isNumError) e.preventDefault();
+    e.preventDefault();
+    if (isNumError) {
+      console.log('안대용');
+    } else {
+      console.log('제출댐');
+    }
   };
 
   useEffect(() => {
@@ -117,21 +155,31 @@ const InputNumber = ({ isNumError, setIsNumError }) => {
     } else {
       setIsNumError(true);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [number]);
 
+  useEffect(() => {
+    if (number) {
+      console.log(number.first, number.second, number.third);
+    }
+  }, [number]);
   return (
     <InputNumberBlock>
       <form onSubmit={onSubmitForm}>
-        <Select
-          desc="선택"
-          options={['010', '011', '012', '031', '0132']}
-          setNumber={setNumber}
-          number={number}
-        />
+        <label htmlFor="tel">연락처</label>
         <div className="input-group">
+          <select onChange={onChangeSelect}>
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="011">016</option>
+            <option value="011">017</option>
+            <option value="011">018</option>
+            <option value="0310">019</option>
+          </select>
           <input
             name="second"
             type="number"
+            id="tel"
             pattern="[0-9]*"
             inputMode="decimal"
             onChange={handleNumber}
