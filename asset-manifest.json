@@ -1,15 +1,19 @@
 {
   "files": {
     "main.css": "/project-test/static/css/main.faeed7a1.css",
-    "main.js": "/project-test/static/js/main.01c78e1c.js",
+    "main.js": "/project-test/static/js/main.16a1de7c.js",
+    "static/media/check.svg": "/project-test/static/media/check.5434a079849821469435521ddca185ee.svg",
+    "static/media/checkFill.svg": "/project-test/static/media/checkFill.3e9cac8f852735da13502d2e9b27c723.svg",
     "index.html": "/project-test/index.html",
     "static/media/share.svg": "/project-test/static/media/share.c5e662aefed5e16370257b8f9dcacc1a.svg",
     "static/media/close.svg": "/project-test/static/media/close.604f17ae9e7f7ab96de76a3408313180.svg",
+    "static/media/closed.svg": "/project-test/static/media/closed.341ff28cd0e713b226d240272345e3e8.svg",
+    "static/media/opened.svg": "/project-test/static/media/opened.6fc6cf9dc32099152b1db66b9725743f.svg",
     "main.faeed7a1.css.map": "/project-test/static/css/main.faeed7a1.css.map",
-    "main.01c78e1c.js.map": "/project-test/static/js/main.01c78e1c.js.map"
+    "main.16a1de7c.js.map": "/project-test/static/js/main.16a1de7c.js.map"
   },
   "entrypoints": [
     "static/css/main.faeed7a1.css",
-    "static/js/main.01c78e1c.js"
+    "static/js/main.16a1de7c.js"
   ]
 }
