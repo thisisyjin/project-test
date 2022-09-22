@@ -63,9 +63,9 @@ const InputText = ({ isTextError, setIsTextError }) => {
     // 글자수 제한만 걸어두기 - 리로드는 방지
   };
 
-  useEffect(() => {
-    nameRef.current.focus();
-  }, []);
+  // useEffect(() => {
+  //   nameRef.current.focus();
+  // }, []);
 
   return (
     <InputTextBlock>
@@ -80,7 +80,11 @@ const InputText = ({ isTextError, setIsTextError }) => {
           placeholder="이름을 입력해 주세요."
           required
           onBlur={checkValidName}
-          ref={nameRef}
+          ref={function (ref) {
+            if (ref !== null) {
+              ref.focus();
+            }
+          }}
         />
         {isTextError && <span>2자 이상 입력하세요.</span>}
       </form>
