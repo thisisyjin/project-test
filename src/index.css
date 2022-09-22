@@ -35,3 +35,10 @@ li {
   padding: 0;
   list-style: none;
 }
+
+input,
+textarea {
+  appearance: none;
+  -webkit-appearance: none;
+  -webkit-border-radius: 0;
+}

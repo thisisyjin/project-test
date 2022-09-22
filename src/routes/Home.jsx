@@ -1,18 +1,18 @@
+import { useState } from 'react';
 import { useEffect } from 'react';
 import { useNavigate } from '../../node_modules/react-router-dom/index';
+import BlockPrevModal from '../components/common/BlockPrevModal';
 
 import Header from '../components/common/Header';
 import InputFileTest from '../components/main/InputFileTest';
 
 const Home = () => {
   const navigate = useNavigate();
+  const [visible, setVisible] = useState(false);
 
   const handleEvent = () => {
     window.history.pushState(null, null, window.location.href);
-    const response = window.confirm('정말 뒤로 가시겠습니까?');
-    if (response) {
-      navigate('/');
-    }
+    setVisible(true); // 모달 띄우기
   };
 
   useEffect(() => {
@@ -23,10 +23,24 @@ const Home = () => {
     };
   }, []);
 
+  const onCloseModal = () => {
+    setVisible(false);
+  };
+
+  const onMovePrevPage = () => {
+    navigate('/');
+  };
+
   return (
     <>
       <Header />
       <InputFileTest />
+      {visible && (
+        <BlockPrevModal
+          onCloseModal={onCloseModal}
+          onMovePrevPage={onMovePrevPage}
+        />
+      )}
     </>
   );
 };

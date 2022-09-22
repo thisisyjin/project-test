@@ -48,17 +48,23 @@ const InputNumberBlock = styled.div`
     border-bottom: 2px solid #33333360;
     transition: all 0.3s;
     max-height: 50px;
+    background-color: #fff;
   }
 
   select {
     border-bottom: 2px solid #33333360;
-    width: 70px;
+    height: 44px;
+    width: 75px;
     -webkit-appearance: none;
     background-image: url(${closed});
     background-position: 110%;
     background-repeat: no-repeat;
     background-size: 20px;
     padding-right: 5px;
+    background-color: #fff;
+    color: #222;
+    border-radius: 0;
+    font-size: 16px;
 
     &:focus {
       background-image: url(${opened});
